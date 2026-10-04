@@ -76,7 +76,7 @@ and GPU computation are coordinated:
 
 > **Synchronous:** Communication ──► GEMM  
 >
-> **Asynchronous:** Communication || GEMM
+> **Asynchronous:** Communication ⇄ GEMM *(overlap)*
 
 The asynchronous models are designed to investigate whether communication
 can be **hidden behind GPU computation** through:
