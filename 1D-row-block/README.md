@@ -143,8 +143,7 @@ Each timed iteration has three conceptual phases.
 
 The root initially owns the complete $A$. Each rank receives:
 
-$A_i$
-
+$$A_i$$
 
 with dimensions:
 
