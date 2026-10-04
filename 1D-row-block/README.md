@@ -101,7 +101,7 @@ For example:
 MMM
 ```
 
-uses conventional synchronous MPI for A, B, and C.
+uses conventional synchronous MPI for $A$, $B$, and $C$.
 
 The code also supports mixed strings such as:
 
@@ -218,7 +218,7 @@ The implementation attempts to pipeline preparation of the next B chunk with com
 
 `CCC` uses blocking MPI operations directly on CUDA device buffers.
 
-For B:
+For $B$:
 
 ```text
 GPU B
@@ -234,7 +234,7 @@ This removes the explicit application-level host staging used by `MMM`.
 
 ### 6.4 XXX — CUDA-Aware MPI asynchronous/chunked path
 
-The B path uses `MPI_Ibcast` directly on GPU buffers and processes `B` in K chunks with ping-pong buffers.
+The $B$ path uses `MPI_Ibcast` directly on GPU buffers and processes $B$ in K chunks with ping-pong buffers.
 
 The intended pipeline is:
 
