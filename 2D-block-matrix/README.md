@@ -29,7 +29,7 @@ The current implementation is primarily a **single-node / four-GPU experimental 
 | `YYY` | MPI-CHUNKED-ASYNC | `MPI_Ibcast` + pinned host buffers + asynchronous H2D | A and B | Communication / H2D / GEMM pipeline |
 | `CCC` | CUDA-Aware MPI-SYNC | Blocking `MPI_Bcast` directly on CUDA buffers | No | None |
 | `XXX` | CUDA-Aware MPI-ASYNC | `MPI_Ibcast` directly on GPU buffers | B | B communication / GEMM |
-| `NNN` | NCCL-ASYNC | `ncclBroadcast` on CUDA streams | B | B communication / GEMM |
+| `NNN` | NCCL  | `ncclBroadcast` on CUDA streams | B | B communication / GEMM |
 | `WWW` | NVSHMEM-SYNC | Blocking `nvshmem_getmem` | No | None |
 | `SSS` | NVSHMEM-CHUNKED-ASYNC | `nvshmemx_getmem_nbi_on_stream` + double buffering | B | NVSHMEM GET / GEMM |
 
