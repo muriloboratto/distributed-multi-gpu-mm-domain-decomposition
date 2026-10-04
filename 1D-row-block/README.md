@@ -11,7 +11,7 @@ The project is designed to study **data movement, data locality, synchronization
 
 The matrix $A$ is partitioned by rows across MPI ranks/GPUs, while the complete matrix $B$ is required by every participating GPU. Rank $i$ computes:
 
-$C_i = A_i B$
+$$C_i = A_i B$$
 
 The implementation allows the communication strategy used for **A distribution**, **B distribution**, and **C collection** to be selected independently with a three-character communication string.
 
@@ -21,7 +21,7 @@ The implementation allows the communication strategy used for **A distribution**
 
 The decomposition implemented by this project is:
 
-$C_i = A_i  B$
+$$C_i = A_i  B$$
 
 For four GPUs:
 
@@ -183,13 +183,13 @@ For $B$:
 ```text
 GPU B on root
       ↓ D2H
-Host B
+    Host B
       ↓ MPI_Bcast
-Host B on ranks
+  Host B on ranks
       ↓ H2D
-GPU B
+    GPU B
       ↓
-GEMM
+    GEMM
 ```
 
 This path intentionally exposes host/device staging costs.
@@ -242,7 +242,7 @@ The intended pipeline is:
 ```text
 Communication:  B0 -------- B1 -------- B2 -------- B3
                  |           |           |
-Compute:         GEMM0 ----- GEMM1 ----- GEMM2 ----- GEMM3
+Compute:      GEMM0 -----   GEMM1 ----- GEMM2 ----- GEMM3
 ```
 
 This configuration is useful for comparing synchronous CUDA-Aware MPI (`CCC`) with a chunked nonblocking CUDA-Aware path (`XXX`).
@@ -258,7 +258,7 @@ ncclBroadcast(full B)
         ↓
 cudaStreamSynchronize()
         ↓
-GEMM
+       GEMM
 ```
 
 Therefore, although NCCL operations are enqueued on a CUDA stream, the current implementation synchronizes the NCCL stream before GEMM and should **not** be described as a B/GEMM overlap implementation.
