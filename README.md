@@ -8,7 +8,7 @@ matrix-multiplication benchmarks.
 
 The benchmark considers two matrix-decomposition strategies.
 
-### Scheme #1 --- 1D Row-Block Decomposition
+### Scheme #1 - 1D Row-Block Decomposition
 
 Matrix $A$ is partitioned by rows among the GPUs, while the complete
 matrix $B$ is required by every participating GPU.
@@ -18,7 +18,7 @@ C_i = A_i B
 $$
 
 
-### Scheme #2 --- 2D Block Matrix Decomposition
+### Scheme #2 - 2D Block Matrix Decomposition
 
 Matrices are partitioned into two-dimensional blocks. Each output block
 is computed from the corresponding blocks of $A$ and $B$.
