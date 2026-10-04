@@ -325,8 +325,6 @@ Smaller chunks increase pipeline opportunities but also increase collective, eve
 ├── native-execution-script.sh
 ├── slurm-execution-script.sh
 ├── plot.py
-├── img/
-│   └── 1.png
 └── experimental-results/
     ├── result--2048-32768-1node-4GPUs-MMM.txt
     ├── result--2048-32768-1node-4GPUs-YYY.txt

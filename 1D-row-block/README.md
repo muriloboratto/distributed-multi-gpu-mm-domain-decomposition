@@ -366,8 +366,6 @@ Smaller chunks can expose more pipeline opportunities, but also increase collect
 ├── native-execution-script.sh
 ├── slurm-execution-script.sh
 ├── plot.py
-├── img/
-│   └── 1.png
 └── experimental-results/
 ```
 
