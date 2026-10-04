@@ -13,7 +13,9 @@ The benchmark considers two matrix-decomposition strategies.
 Matrix $A$ is partitioned by rows among the GPUs, while the complete
 matrix $B$ is required by every participating GPU.
 
-$C_i = A_i B$
+$$
+C_i = A_i B
+$$
 
 
 ### Scheme #2 --- 2D Block Matrix Decomposition
@@ -21,7 +23,9 @@ $C_i = A_i B$
 Matrices are partitioned into two-dimensional blocks. Each output block
 is computed from the corresponding blocks of $A$ and $B$.
 
-$C_{ij} = \sum_k A_{ik} B_{kj}$
+$$
+C_{ij} = \sum_k A_{ik} B_{kj}
+$$
 
 This scheme follows the block-oriented organization used by **SUMMA
 (Scalable Universal Matrix Multiplication Algorithm)**.
