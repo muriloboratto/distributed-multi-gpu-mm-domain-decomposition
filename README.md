@@ -52,19 +52,8 @@ NVSHMEM communication strategies.
 The two figures highlight the two main dimensions investigated by the
 benchmark:
 
-## Data Decomposition
 
-The benchmark evaluates two domain-decomposition strategies:
-
-| **1D Row-Block Decomposition** | **2D Block Decomposition / SUMMA** |
-|:---:|:---:|
-| Matrix **A** is partitioned into row blocks | Matrices **A** and **B** are partitioned into 2D blocks |
-| ↓ | ↓ |
-| $C_i = A_i B$ | $C_{ij} = \displaystyle\sum_{k=0}^{q-1} A_{ik}B_{kj}$ |
-| ↓ | ↓ |
-| **Local output:** $C_i$ | **Local output:** $C_{ij}$ |
-
-## Communication and Computation
+### Communication and Computation
 
 The communication models can be organized according to how communication
 and GPU computation are coordinated:
@@ -79,7 +68,7 @@ and GPU computation are coordinated:
 | Sequential execution | Pipelined execution |
 | **No overlap** | **Communication + Computation overlap** |
 
-### Key Idea
+#### Key Idea
 
 > **Synchronous:** Communication ──► GEMM  
 >
