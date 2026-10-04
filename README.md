@@ -34,7 +34,7 @@ This scheme follows the block-oriented organization used by **SUMMA
 The benchmark compares synchronous, asynchronous, CUDA-aware, NCCL, and
 NVSHMEM communication strategies.
 
-  | Label | Model | Main communication mechanism | Chunking | Intended overlap |
+| Label | Model | Main communication mechanism | Chunking | Intended overlap |
 |:-----:|---|---|:---:|---|
 | `MMM` | **MPI-SYNC** | Blocking `MPI_Bcast` through host buffers | No | None |
 | `YYY` | **MPI-CHUNKED-ASYNC** | `MPI_Ibcast` + pinned host buffers + asynchronous H2D | A and B | Communication / H2D / GEMM pipeline |
@@ -58,11 +58,11 @@ The benchmark evaluates two domain-decomposition strategies:
 
 | **1D Row-Block Decomposition** | **2D Block Decomposition / SUMMA** |
 |:---:|:---:|
-| Matrix **A** is partitioned by rows | Matrices **A** and **B** are partitioned into 2D blocks |
+| Matrix **A** is partitioned into row blocks | Matrices **A** and **B** are partitioned into 2D blocks |
 | ↓ | ↓ |
 | $C_i = A_i B$ | $C_{ij} = \displaystyle\sum_{k=0}^{q-1} A_{ik}B_{kj}$ |
 | ↓ | ↓ |
-| **Local result:** $C_i$ | **Local result:** $C_{ij}$ |
+| **Local output:** $C_i$ | **Local output:** $C_{ij}$ |
 
 ## Communication and Computation
 
