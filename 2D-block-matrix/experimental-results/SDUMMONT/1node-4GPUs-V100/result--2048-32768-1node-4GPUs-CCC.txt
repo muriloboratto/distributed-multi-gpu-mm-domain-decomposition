@@ -1,0 +1,105 @@
+Matrix size = 2048 | Library = CCC
+mmb node=sdumont8054 rank=0 grid=(0,0) device=0:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=1 grid=(0,1) device=1:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=2 grid=(1,0) device=2:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=3 grid=(1,1) device=3:Tesla V100-SXM2-32GB library=CCC SUMMA
+Matrix size = 2048 | Library = CCC | Decomposition = SUMMA 2x2
+Time = 0.029934 s
+
+============================================================
+NUMERICAL VALIDATION
+============================================================
+Matrix dimensions  : 2048 x 2048
+Expected C[i,j]    : 4096.000000000000
+Elements checked   : 4194304
+Invalid elements   : 0
+Max absolute error : 0.000000e+00
+Max relative error : 0.000000e+00
+Absolute tolerance : 1.000000e-09
+Relative tolerance : 1.000000e-12
+Result             : PASS
+============================================================
+Matrix size = 4096 | Library = CCC
+mmb node=sdumont8054 rank=0 grid=(0,0) device=0:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=1 grid=(0,1) device=1:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=2 grid=(1,0) device=2:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=3 grid=(1,1) device=3:Tesla V100-SXM2-32GB library=CCC SUMMA
+Matrix size = 4096 | Library = CCC | Decomposition = SUMMA 2x2
+Time = 0.094778 s
+
+============================================================
+NUMERICAL VALIDATION
+============================================================
+Matrix dimensions  : 4096 x 4096
+Expected C[i,j]    : 8192.000000000000
+Elements checked   : 16777216
+Invalid elements   : 0
+Max absolute error : 0.000000e+00
+Max relative error : 0.000000e+00
+Absolute tolerance : 1.000000e-09
+Relative tolerance : 1.000000e-12
+Result             : PASS
+============================================================
+Matrix size = 8192 | Library = CCC
+mmb node=sdumont8054 rank=0 grid=(0,0) device=0:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=1 grid=(0,1) device=1:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=2 grid=(1,0) device=2:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=3 grid=(1,1) device=3:Tesla V100-SXM2-32GB library=CCC SUMMA
+Matrix size = 8192 | Library = CCC | Decomposition = SUMMA 2x2
+Time = 0.414199 s
+
+============================================================
+NUMERICAL VALIDATION
+============================================================
+Matrix dimensions  : 8192 x 8192
+Expected C[i,j]    : 16384.000000000000
+Elements checked   : 67108864
+Invalid elements   : 0
+Max absolute error : 0.000000e+00
+Max relative error : 0.000000e+00
+Absolute tolerance : 1.000000e-09
+Relative tolerance : 1.000000e-12
+Result             : PASS
+============================================================
+Matrix size = 16384 | Library = CCC
+mmb node=sdumont8054 rank=0 grid=(0,0) device=0:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=1 grid=(0,1) device=1:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=2 grid=(1,0) device=2:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=3 grid=(1,1) device=3:Tesla V100-SXM2-32GB library=CCC SUMMA
+Matrix size = 16384 | Library = CCC | Decomposition = SUMMA 2x2
+Time = 2.241248 s
+
+============================================================
+NUMERICAL VALIDATION
+============================================================
+Matrix dimensions  : 16384 x 16384
+Expected C[i,j]    : 32768.000000000000
+Elements checked   : 268435456
+Invalid elements   : 0
+Max absolute error : 0.000000e+00
+Max relative error : 0.000000e+00
+Absolute tolerance : 1.000000e-09
+Relative tolerance : 1.000000e-12
+Result             : PASS
+============================================================
+Matrix size = 32768 | Library = CCC
+mmb node=sdumont8054 rank=0 grid=(0,0) device=0:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=1 grid=(0,1) device=1:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=2 grid=(1,0) device=2:Tesla V100-SXM2-32GB library=CCC SUMMA
+mmb node=sdumont8054 rank=3 grid=(1,1) device=3:Tesla V100-SXM2-32GB library=CCC SUMMA
+Matrix size = 32768 | Library = CCC | Decomposition = SUMMA 2x2
+Time = 14.002342 s
+
+============================================================
+NUMERICAL VALIDATION
+============================================================
+Matrix dimensions  : 32768 x 32768
+Expected C[i,j]    : 65536.000000000000
+Elements checked   : 1073741824
+Invalid elements   : 0
+Max absolute error : 0.000000e+00
+Max relative error : 0.000000e+00
+Absolute tolerance : 1.000000e-09
+Relative tolerance : 1.000000e-12
+Result             : PASS
+============================================================

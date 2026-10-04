@@ -1,0 +1,115 @@
+Matrix size = 2048 | Library = NNN
+mmb node=sdumont8054 device=0:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=2:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=1:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=3:Tesla V100-SXM2-32GB libraries=NNN
+
+
+mmb myRank=0	Libraries=NNN	 RESULT: Matrix size: 2048	Time (seconds):    0.003
+
+
+============================================================
+NUMERICAL VALIDATION
+============================================================
+Matrix dimensions  : 2048 x 2048
+Expected C[i,j]    : 4096.000000000000
+Elements checked   : 4194304
+Invalid elements   : 0
+Max absolute error : 0.000000e+00
+Max relative error : 0.000000e+00
+Absolute tolerance : 1.000000e-09
+Relative tolerance : 1.000000e-12
+Result             : PASS
+============================================================
+Matrix size = 4096 | Library = NNN
+mmb node=sdumont8054 device=1:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=3:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=2:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=0:Tesla V100-SXM2-32GB libraries=NNN
+
+
+mmb myRank=0	Libraries=NNN	 RESULT: Matrix size: 4096	Time (seconds):    0.019
+
+
+============================================================
+NUMERICAL VALIDATION
+============================================================
+Matrix dimensions  : 4096 x 4096
+Expected C[i,j]    : 8192.000000000000
+Elements checked   : 16777216
+Invalid elements   : 0
+Max absolute error : 0.000000e+00
+Max relative error : 0.000000e+00
+Absolute tolerance : 1.000000e-09
+Relative tolerance : 1.000000e-12
+Result             : PASS
+============================================================
+Matrix size = 8192 | Library = NNN
+mmb node=sdumont8054 device=1:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=3:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=0:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=2:Tesla V100-SXM2-32GB libraries=NNN
+
+
+mmb myRank=0	Libraries=NNN	 RESULT: Matrix size: 8192	Time (seconds):    0.140
+
+
+============================================================
+NUMERICAL VALIDATION
+============================================================
+Matrix dimensions  : 8192 x 8192
+Expected C[i,j]    : 16384.000000000000
+Elements checked   : 67108864
+Invalid elements   : 0
+Max absolute error : 0.000000e+00
+Max relative error : 0.000000e+00
+Absolute tolerance : 1.000000e-09
+Relative tolerance : 1.000000e-12
+Result             : PASS
+============================================================
+Matrix size = 16384 | Library = NNN
+mmb node=sdumont8054 device=3:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=1:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=0:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=2:Tesla V100-SXM2-32GB libraries=NNN
+
+
+mmb myRank=0	Libraries=NNN	 RESULT: Matrix size: 16384	Time (seconds):    1.071
+
+
+============================================================
+NUMERICAL VALIDATION
+============================================================
+Matrix dimensions  : 16384 x 16384
+Expected C[i,j]    : 32768.000000000000
+Elements checked   : 268435456
+Invalid elements   : 0
+Max absolute error : 0.000000e+00
+Max relative error : 0.000000e+00
+Absolute tolerance : 1.000000e-09
+Relative tolerance : 1.000000e-12
+Result             : PASS
+============================================================
+Matrix size = 32768 | Library = NNN
+mmb node=sdumont8054 device=2:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=0:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=3:Tesla V100-SXM2-32GB libraries=NNN
+mmb node=sdumont8054 device=1:Tesla V100-SXM2-32GB libraries=NNN
+
+
+mmb myRank=0	Libraries=NNN	 RESULT: Matrix size: 32768	Time (seconds):    8.432
+
+
+============================================================
+NUMERICAL VALIDATION
+============================================================
+Matrix dimensions  : 32768 x 32768
+Expected C[i,j]    : 65536.000000000000
+Elements checked   : 1073741824
+Invalid elements   : 0
+Max absolute error : 0.000000e+00
+Max relative error : 0.000000e+00
+Absolute tolerance : 1.000000e-09
+Relative tolerance : 1.000000e-12
+Result             : PASS
+============================================================

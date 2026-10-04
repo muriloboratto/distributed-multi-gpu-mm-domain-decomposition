@@ -1,0 +1,40 @@
+Matrix size = 2048 | Library = MMM
+Matrix size = 2048 | Library = YYY
+Matrix size = 2048 | Library = CCC
+Matrix size = 2048 | Library = XXX
+Matrix size = 2048 | Library = NNN
+Matrix size = 2048 | Library = WWW
+Matrix size = 2048 | Library = SSS
+-----------
+Matrix size = 4096 | Library = MMM
+Matrix size = 4096 | Library = YYY
+Matrix size = 4096 | Library = CCC
+Matrix size = 4096 | Library = XXX
+Matrix size = 4096 | Library = NNN
+Matrix size = 4096 | Library = WWW
+Matrix size = 4096 | Library = SSS
+-----------
+Matrix size = 8192 | Library = MMM
+Matrix size = 8192 | Library = YYY
+Matrix size = 8192 | Library = CCC
+Matrix size = 8192 | Library = XXX
+Matrix size = 8192 | Library = NNN
+Matrix size = 8192 | Library = WWW
+Matrix size = 8192 | Library = SSS
+-----------
+Matrix size = 16384 | Library = MMM
+Matrix size = 16384 | Library = YYY
+Matrix size = 16384 | Library = CCC
+Matrix size = 16384 | Library = XXX
+Matrix size = 16384 | Library = NNN
+Matrix size = 16384 | Library = WWW
+Matrix size = 16384 | Library = SSS
+-----------
+Matrix size = 32768 | Library = MMM
+Matrix size = 32768 | Library = YYY
+Matrix size = 32768 | Library = CCC
+Matrix size = 32768 | Library = XXX
+Matrix size = 32768 | Library = NNN
+Matrix size = 32768 | Library = WWW
+Matrix size = 32768 | Library = SSS
+
