@@ -166,7 +166,7 @@ For $Y$, $X$, and $S$, the B dimension is processed in **K chunks**, enabling a 
 
 Each GPU produces:
 
-$C_i$
+$$C_i$$
 
 and the local blocks are collected into the complete matrix $C$ according to the third communication character.
 
@@ -228,7 +228,7 @@ MPI_Bcast(device buffer)
   ↓
 GPU B
   ↓
-GEMM
+ GEMM
 ```
 
 This removes the explicit application-level host staging used by `MMM`.
@@ -278,7 +278,7 @@ nvshmem_double_get(full B)
         ↓
 local symmetric B
         ↓
-GEMM
+      GEMM
 ```
 
 This provides a synchronous reference for comparison with `SSS`.
