@@ -17,7 +17,7 @@ The main questions are:
 - How do MPI, CUDA-Aware MPI, NCCL, and NVSHMEM behave under the same 2D SUMMA decomposition?
 - How do synchronization, buffer reuse, and data locality influence GPU utilization and scalability?
 
-The current implementation is primarily a **single-node / four-GPU experimental framework**, but the decomposition is formulated for `P = q²` MPI ranks.
+The current implementation is primarily a **single-node / four-GPU experimental framework**, but the decomposition is formulated for $P = q^2$ MPI ranks.
 
 ---
 
