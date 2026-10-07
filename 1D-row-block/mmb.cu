@@ -357,12 +357,14 @@ int main(int argc, char *argv[])
     double *s_A = NULL, *s_B = NULL, *s_C = NULL;
     double *s_lA = NULL, *s_lC = NULL;
 
-    if (is_nvshmem_library(libA)) 
+    if (is_nvshmem_library(libA))
     {
-        s_A  = (double *)nvshmem_malloc(bytes_A);
+        if (libA == 'W')
+            s_A = (double *)nvshmem_malloc(bytes_A);
+
         s_lA = (double *)nvshmem_malloc(bytes_lA);
 
-        if (!s_A || !s_lA) 
+        if ((libA == 'W' && !s_A) || !s_lA)
         {
             fprintf(stderr, "NVSHMEM symmetric allocation for A failed on PE %d\n", myPE);
             nvshmem_global_exit(EXIT_FAILURE);
@@ -380,12 +382,14 @@ int main(int argc, char *argv[])
         }
     }
 
-    if (is_nvshmem_library(libC)) 
+    if (is_nvshmem_library(libC))
     {
-        s_C  = (double *)nvshmem_malloc(bytes_C);
+        if (libC == 'W')
+            s_C = (double *)nvshmem_malloc(bytes_C);
+
         s_lC = (double *)nvshmem_malloc(bytes_lC);
 
-        if (!s_C || !s_lC) 
+        if ((libC == 'W' && !s_C) || !s_lC)
         {
             fprintf(stderr, "NVSHMEM symmetric allocation for C failed on PE %d\n", myPE);
             nvshmem_global_exit(EXIT_FAILURE);
@@ -428,26 +432,48 @@ int main(int argc, char *argv[])
     /* Initial values: initialize only the storage selected by A and B.   */
     /* ------------------------------------------------------------------ */
 
-    if (myRank == 0) 
+    /* S keeps A_i local from the beginning; no full s_A is required. */
+    if (libA == 'S')
     {
-        double *tmp_A = (double *)malloc(bytes_A);
+        double *tmp_lA = (double *)malloc(bytes_lA);
+        if (!tmp_lA)
+        {
+            fprintf(stderr, "Local A initialization allocation failed on rank %d\n", myRank);
+            nvshmem_global_exit(EXIT_FAILURE);
+        }
+
+        for (size_t i = 0; i < (size_t)mi * k; ++i)
+            tmp_lA[i] = 1.0;
+
+        cudaMemcpy(s_lA, tmp_lA, bytes_lA, cudaMemcpyHostToDevice);
+        free(tmp_lA);
+    }
+
+    if (myRank == 0)
+    {
+        double *tmp_A = NULL;
         double *tmp_B = (double *)malloc(bytes_B);
 
-        if (!tmp_A || !tmp_B) 
+        /* Full A is still needed by the non-S paths and by W. */
+        if (libA != 'S')
+            tmp_A = (double *)malloc(bytes_A);
+
+        if ((libA != 'S' && !tmp_A) || !tmp_B)
         {
             fprintf(stderr, "Initialization host allocation failed on rank 0\n");
             MPI_Abort(MPI_COMM_WORLD, EXIT_FAILURE);
         }
 
-        for (size_t i = 0; i < (size_t)m * k; ++i)
-            tmp_A[i] = 1.0;
+        if (tmp_A)
+            for (size_t i = 0; i < (size_t)m * k; ++i)
+                tmp_A[i] = 1.0;
 
         for (size_t i = 0; i < (size_t)k * n; ++i)
             tmp_B[i] = 2.0;
 
-        if (is_nvshmem_library(libA))
+        if (libA == 'W')
             cudaMemcpy(s_A, tmp_A, bytes_A, cudaMemcpyHostToDevice);
-        else
+        else if (libA != 'S')
             cudaMemcpy(d_A, tmp_A, bytes_A, cudaMemcpyHostToDevice);
 
         if (is_nvshmem_library(libB))
@@ -516,9 +542,10 @@ int main(int argc, char *argv[])
                 break;
 
             case 'W':
- 
-            case 'S':
                 nvshmem_double_get(s_lA, s_A + (size_t)myPE * mi * k, (size_t)mi * k, 0);
+                break;
+
+            case 'S':
                 break;
         }
 
@@ -647,7 +674,6 @@ int main(int argc, char *argv[])
                     }
                     else if (libB == 'Y')
                     {
-                        /* Root stages B through pinned host memory for conventional MPI. */
                         if (myRank == 0)
                         {
                             cudaMemcpyAsync(y_b_host[next], d_B + (size_t)next_offset * n, next_count * sizeof(double), cudaMemcpyDeviceToHost, comm_stream);
@@ -736,19 +762,17 @@ int main(int argc, char *argv[])
                 break;
 
             case 'W':
-              
-            
-            case 'S':
                 nvshmem_barrier_all();
 
-                if (myPE == 0) 
+                if (myPE == 0)
                 {
-                    for (int pe = 0; pe < nPEs; ++pe) 
+                    for (int pe = 0; pe < nPEs; ++pe)
                         nvshmem_double_get(s_C + (size_t)pe * mi * n, s_lC, (size_t)mi * n, pe);
-                    
                 }
-                /* All PEs wait until root has finished reading local C. */
                 nvshmem_barrier_all();
+                break;
+
+            case 'S':
                 break;
         }
     }
@@ -767,13 +791,19 @@ int main(int argc, char *argv[])
     /* A[i,j] = 1 and B[i,j] = 2, therefore C[i,j] = 2 * matrix_size.     */
     /* ------------------------------------------------------------------ */
 
-    if (myRank == 0)
-    {
-        const double *validation_C = (is_nvshmem_library(libC)) ? s_C : d_C;
-        const double expected_C = 2.0 * (double)k;
-        const double abs_tol = 1.0e-9;
-        const double rel_tol = 1.0e-12;
+    const double expected_C = 2.0 * (double)k;
+    const double abs_tol = 1.0e-9;
+    const double rel_tol = 1.0e-12;
 
+    if (libC == 'S')
+    {
+        /* Validate each local C_i directly; no full symmetric C is required. */
+        validate_matrix_C(s_lC, mi, n, expected_C, abs_tol, rel_tol, myRank);
+        MPI_Barrier(MPI_COMM_WORLD);
+    }
+    else if (myRank == 0)
+    {
+        const double *validation_C = (libC == 'W') ? s_C : d_C;
         validate_matrix_C(validation_C, m, n, expected_C, abs_tol, rel_tol, myRank);
     }
 
